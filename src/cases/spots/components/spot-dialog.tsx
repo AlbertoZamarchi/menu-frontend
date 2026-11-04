@@ -7,7 +7,7 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog"
 import { MapPin } from "lucide-react"
-import { useSpots } from "../hooks/use-hook"
+import { useSpots } from "../hooks/use-category"
 
 interface SpotDialogProps {
   open: boolean
