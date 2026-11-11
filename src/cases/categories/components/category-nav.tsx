@@ -5,6 +5,10 @@ import { cn } from "@/lib/utils";
 import { Utensils } from "lucide-react";
 
 export function CategoryNav() {
+
+    const [searchParams] = useSearchParams();
+    const selectedCategoryId = searchParams.get("categoryid");
+
     const { data: categories = [] } = useCategories();
 
     return (
@@ -18,15 +22,20 @@ export function CategoryNav() {
                         <Link
                             to={`/products?categoryid=${category.id}`}
                             className={cn(
-                                "relative flex w-full items-center gap-3 px-5 py-5",
-                                "font-menu text-lg font-semibold uppercase tracking-tight",
-                                "border-xl border-transparent",
-                                "transition-colors duration-200",
-                                "hover:z-10 hover:text-[#B86A2C]"
+                                'relative flex w-full items-center gap-3 px-5 py-5',
+                                'font-menu text-lg font-semibold uppercase tracking-tight',
+                                'border-xl border-transparent',
+                                'transition-colors duration-200',
+                                'hover:z-10 hover:text-[#B86A2C]',
+                                selectedCategoryId === category.id ? 
+                                    ['border-[#B86A2C]', 'bg-primary/5', 'text-[#B86A2C]'] 
+                                : 
+                                    ['text-foreground', 'border-b-border/60']
                             )}
                         >
                             {category.icon ? (
-                                <span>{category.icon}</span>
+                                <img src={category.icon} 
+                                className="size-10"/>
                             ) : (
                                 <Utensils
                                     className="size-10 text-brand"

@@ -7,3 +7,11 @@ export function useCategories() {
         queryFn: categoryService.listAll
     })
 }
+
+export function useCategory(id: string) {
+    return useQuery({
+        queryKey: ['category', id],
+        queryFn: () => categoryService.findOne(id),
+        enabled: !!id
+    })
+}
